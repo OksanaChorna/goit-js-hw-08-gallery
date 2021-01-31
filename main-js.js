@@ -31,6 +31,7 @@ const lightboxRef = document.querySelector(".js-lightbox");
 const lightboxImgRef = document.querySelector(".lightbox__image");
 
 function openModal(largeImgURL) {
+  window.addEventListener("keydown", onPresEsc);
   lightboxRef.classList.add("is-open");
   lightboxImgRef.src = largeImgURL;
 }
@@ -42,9 +43,15 @@ const btnCloseRef = document.querySelector(
 btnCloseRef.addEventListener("click", closeModal);
 
 function closeModal() {
+  window.removeEventListener("keydown", onPresEsc);
   lightboxRef.classList.remove("is-open");
   lightboxImgRef.src = "";
 }
 
 const lightboxOverlayRef = document.querySelector(".lightbox__overlay");
 lightboxOverlayRef.addEventListener("click", closeModal);
+
+function onPresEsc(event) {
+  if (event.code === "Escape");
+  closeModal();
+}
