@@ -33,7 +33,6 @@ const lightboxImgRef = document.querySelector(".lightbox__image");
 function openModal(largeImgURL) {
   lightboxRef.classList.add("is-open");
   lightboxImgRef.src = largeImgURL;
-  // lightboxImgRef.alt = "";
 }
 
 const btnCloseRef = document.querySelector(
@@ -46,3 +45,6 @@ function closeModal() {
   lightboxRef.classList.remove("is-open");
   lightboxImgRef.src = "";
 }
+
+const lightboxOverlayRef = document.querySelector(".lightbox__overlay");
+lightboxOverlayRef.addEventListener("click", closeModal);
