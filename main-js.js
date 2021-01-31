@@ -35,6 +35,7 @@ function onOpenModal(largeImgURL, alt) {
   lightboxRef.classList.add("is-open");
   lightboxImgRef.src = largeImgURL;
   lightboxImgRef.alt = alt;
+  console.log(alt);
 }
 
 const btnCloseRef = document.querySelector(
@@ -56,12 +57,11 @@ const backdropRef = document.querySelector(".js-lightbox");
 backdropRef.addEventListener("click", onBackDropClick);
 
 function onBackDropClick(event) {
-  if (event.target === event.currentTarget) {
+  if (event.target.classList.contains(lightboxOverlayRef.classList)) {
     onCloseModal();
   }
 }
 function onPresEsc(event) {
-  console.log(event.code);
   if (event.code === "Escape") {
     onCloseModal();
   }
