@@ -24,34 +24,63 @@ function onImgClick(event) {
   }
   const largeImgURL = event.target.dataset.source;
   largeImgRef.src = largeImgURL;
-  openModal(largeImgURL);
+  onOpenModal(largeImgURL, event.target.alt);
 }
 
 const lightboxRef = document.querySelector(".js-lightbox");
 const lightboxImgRef = document.querySelector(".lightbox__image");
 
-function openModal(largeImgURL) {
+function onOpenModal(largeImgURL, alt) {
   window.addEventListener("keydown", onPresEsc);
   lightboxRef.classList.add("is-open");
   lightboxImgRef.src = largeImgURL;
+  lightboxImgRef.alt = alt;
 }
 
 const btnCloseRef = document.querySelector(
   'button[data-action="close-lightbox"]'
 );
 
-btnCloseRef.addEventListener("click", closeModal);
+btnCloseRef.addEventListener("click", onCloseModal);
 
-function closeModal() {
+function onCloseModal() {
   window.removeEventListener("keydown", onPresEsc);
   lightboxRef.classList.remove("is-open");
   lightboxImgRef.src = "";
+  lightboxImgRef.alt = "";
 }
 
 const lightboxOverlayRef = document.querySelector(".lightbox__overlay");
-lightboxOverlayRef.addEventListener("click", closeModal);
+const backdropRef = document.querySelector(".js-lightbox");
 
-function onPresEsc(event) {
-  if (event.code === "Escape");
-  closeModal();
+backdropRef.addEventListener("click", onBackDropClick);
+
+function onBackDropClick(event) {
+  if (event.target.classList.contains(lightboxOverlayRef.classList))
+    onCloseModal();
 }
+function onPresEsc(event) {
+  console.log(event.code);
+  if (event.code === "Escape") {
+    onCloseModal();
+  }
+}
+
+// function onLeftArrow(event) {
+//   //   if (event.code === "ArrowLeft") {
+//   //     lightboxImgRef
+//   //   }
+//   galleryRef.();
+// }
+
+// const img = (img) => {
+//   return galleryRef.map((img) => galleryRef.img);
+// };
+
+// }
+// function onRightArrow(event){
+//  if (event.code === "ArrowRight") {}}
+// const getUserNames = (users) => {
+//   // твой код
+//   return users.map((user) => user.name);
+// };
