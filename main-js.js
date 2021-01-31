@@ -56,8 +56,9 @@ const backdropRef = document.querySelector(".js-lightbox");
 backdropRef.addEventListener("click", onBackDropClick);
 
 function onBackDropClick(event) {
-  if (event.target.classList.contains(lightboxOverlayRef.classList))
+  if (event.target === event.currentTarget) {
     onCloseModal();
+  }
 }
 function onPresEsc(event) {
   console.log(event.code);
