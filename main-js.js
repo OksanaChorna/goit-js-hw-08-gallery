@@ -35,7 +35,6 @@ function onOpenModal(largeImgURL, alt) {
   lightboxRef.classList.add("is-open");
   lightboxImgRef.src = largeImgURL;
   lightboxImgRef.alt = alt;
-  console.log(alt);
 }
 
 const btnCloseRef = document.querySelector(
